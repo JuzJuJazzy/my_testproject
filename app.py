@@ -18,7 +18,7 @@ def handle_message(message):
     emit('response_message', response, broadcast=True)
 
 def chat_with_gpt3(prompt):
-    api_key = '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'  # ใส่ API key ที่ได้รับจาก OpenAI ที่นี่
+    api_key = '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'  # my_project ใส่ API key ที่ได้รับจาก OpenAI ที่นี่
     url = 'https://api.openai.com/v1/chat/completions'
     headers = {
         'Content-Type': 'application/json',
