@@ -1,0 +1,36 @@
+<!-- templates/index.html -->
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Chat Room</title>
+</head>
+<body>
+    <h1>Chat Room</h1>
+    <div id="message-container"></div>
+    <input type="text" id="input-message" placeholder="Type your message">
+    <button id="send-button">Send</button>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.3.1/socket.io.js"></script>
+    <script>
+        const socket = io();
+
+        const messageContainer = document.getElementById('message-container');
+        const inputMessage = document.getElementById('input-message');
+        const sendButton = document.getElementById('send-button');
+
+        sendButton.addEventListener('click', () => {
+            const message = inputMessage.value.trim();
+            if (message) {
+                socket.emit('message', message);
+                inputMessage.value = '';
+            }
+        });
+
+        socket.on('response_message', response => {
+            const messageElement = document.createElement('div');
+            messageElement.textContent = response;
+            messageContainer.appendChild(messageElement);
+        });
+    </script>
+</body>
+</html>
